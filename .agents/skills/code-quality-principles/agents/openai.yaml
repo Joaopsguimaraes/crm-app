@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Quality Principles"
+  short_description: "Apply SOLID, Clean Code, KISS, DRY, YAGNI"
+  default_prompt: "Use $code-quality-principles when creating or changing frontend or API code."

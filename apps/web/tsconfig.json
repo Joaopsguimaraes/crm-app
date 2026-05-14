@@ -2,6 +2,8 @@
   "extends": "@crm/typescript-config/nextjs",
   "compilerOptions": {
     "baseUrl": ".",
+    "declaration": true,
+    "declarationMap": true,
     "paths": {
       "@/*": ["./src/*"]
     }
