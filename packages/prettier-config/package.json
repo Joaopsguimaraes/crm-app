@@ -1,0 +1,12 @@
+{
+  "name": "@crm/prettier-config",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.mjs"
+  },
+  "peerDependencies": {
+    "prettier": "^3.0.0"
+  }
+}

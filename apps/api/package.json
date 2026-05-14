@@ -1,0 +1,26 @@
+{
+  "name": "@crm/api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "nest build",
+    "clean": "rm -rf dist",
+    "dev": "nest start --watch",
+    "lint": "eslint .",
+    "start": "node dist/main.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@crm/shared": "workspace:*",
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/core": "^10.0.0",
+    "@nestjs/platform-express": "^10.0.0",
+    "reflect-metadata": "^0.2.0",
+    "rxjs": "^7.8.0"
+  },
+  "devDependencies": {
+    "@crm/eslint-config": "workspace:*",
+    "@crm/prettier-config": "workspace:*",
+    "@crm/typescript-config": "workspace:*"
+  }
+}

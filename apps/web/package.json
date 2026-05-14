@@ -1,0 +1,23 @@
+{
+  "name": "@crm/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "clean": "rm -rf .next",
+    "dev": "next dev --port 3000",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@crm/shared": "workspace:*",
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@crm/eslint-config": "workspace:*",
+    "@crm/prettier-config": "workspace:*",
+    "@crm/typescript-config": "workspace:*"
+  }
+}

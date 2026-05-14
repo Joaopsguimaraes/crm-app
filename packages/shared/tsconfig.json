@@ -1,0 +1,11 @@
+{
+  "extends": "@crm/typescript-config/base",
+  "compilerOptions": {
+    "lib": ["es2022"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "target": "es2022"
+  },
+  "include": ["src"]
+}
