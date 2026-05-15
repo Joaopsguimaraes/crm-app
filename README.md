@@ -92,6 +92,53 @@ The `apps/web` package must follow React and NextJS standards:
 - Keep forms fast and resilient, with validation that helps the user complete work without blocking partial prospecting data.
 - Use data-grid patterns for operational records that need inline editing, column control, sorting, filtering, and high-density review.
 
+## Testing Policy
+
+Tests are required in this application. Every use case, hook, service, controller, model, helper, and shared contract MUST have focused automated tests before it is considered complete.
+
+Testing is necessary here because the CRM will contain business rules that affect customer history, commercial decisions, budgets, sales, finance data, and reports. A regression in these areas can create incorrect operational records, lost context, or wrong management indicators. Tests must verify observable behavior and protect the domain rules that users rely on.
+
+Use the smallest reliable test type for each behavior:
+
+- `Unit tests`: verify isolated business logic, helpers, hooks, models, use cases, and services. Keep these fast and deterministic.
+- `Integration tests`: verify how application pieces work together, especially NestJS controllers, services, modules, validation, dependency injection, and API boundaries.
+- `E2E tests`: verify the most important frontend user workflows through the browser with Playwright.
+
+Frontend testing rules:
+
+- Use Vitest and React Testing Library for component, hook, helper, and use-case unit tests.
+- Use Playwright for browser-level e2e tests.
+- Add tests beside the unit being tested with `*.test.ts` or `*.test.tsx`.
+- Keep e2e tests in `apps/web/tests/e2e`.
+- Prefer user-visible assertions such as headings, labels, validation messages, table rows, navigation state, and saved data.
+- Avoid testing implementation details such as private functions, internal React state names, or incidental DOM structure.
+
+API testing rules:
+
+- Use Jest for unit and integration tests.
+- Use `@nestjs/testing` for NestJS integration tests.
+- Use `supertest` for HTTP boundary tests.
+- Add unit tests beside the unit being tested with `*.spec.ts`.
+- Keep integration tests in `apps/api/test` with `*.integration-spec.ts`.
+- Controllers must be tested through HTTP integration tests when route behavior, status codes, validation, serialization, or dependency wiring matters.
+- Services and use cases must be tested directly when they own business rules.
+
+Mocks and in-memory tests:
+
+- Prefer real code paths and in-memory data when the behavior can be tested without external infrastructure.
+- Use mocks for external systems, slow dependencies, nondeterministic dependencies, or infrastructure boundaries such as email, payment, queues, storage, third-party APIs, and database adapters.
+- Use `jest-mock` in API tests when a dependency needs to be replaced.
+- Use Vitest mocks in frontend tests for browser APIs, NextJS navigation, timers, and network boundaries.
+- Use `@faker-js/faker` to build realistic test data when examples need varied names, documents, emails, phone numbers, dates, or commercial values.
+- Keep fake data explicit when the exact value is important for the assertion.
+
+Each new feature should include at least:
+
+- Unit tests for business rules and pure transformations.
+- Integration tests for API boundaries or cross-module behavior.
+- E2E tests for critical user workflows.
+- Regression tests for every bug fix.
+
 ## Commands
 
 ```bash
@@ -101,4 +148,24 @@ pnpm lint
 pnpm typecheck
 pnpm format:check
 pnpm build
+```
+
+### Test Commands
+
+```bash
+# Frontend unit tests
+pnpm --filter @crm/web test:unit
+pnpm --filter @crm/web test:unit:watch
+pnpm --filter @crm/web test:unit:ui
+
+# Frontend e2e tests
+pnpm --filter @crm/web test:e2e
+pnpm --filter @crm/web test:e2e:headed
+pnpm --filter @crm/web test:e2e:ui
+
+# API tests
+pnpm --filter @crm/api test
+pnpm --filter @crm/api test:unit
+pnpm --filter @crm/api test:integration
+pnpm --filter @crm/api test:watch
 ```

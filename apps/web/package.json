@@ -7,17 +7,34 @@
     "clean": "rm -rf .next",
     "dev": "next dev --port 3000",
     "lint": "eslint .",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:ui": "playwright test --ui",
+    "test:unit": "vitest run",
+    "test:unit:ui": "vitest --ui",
+    "test:unit:watch": "vitest",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@crm/shared": "workspace:*",
     "next": "^15.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.75.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@crm/eslint-config": "workspace:*",
     "@crm/prettier-config": "workspace:*",
-    "@crm/typescript-config": "workspace:*"
+    "@crm/typescript-config": "workspace:*",
+    "@playwright/test": "^1.60.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@vitejs/plugin-react": "^6.0.1",
+    "@vitest/ui": "^4.1.6",
+    "jsdom": "^29.1.1",
+    "playwright": "^1.60.0",
+    "vitest": "^4.1.6"
   }
 }

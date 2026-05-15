@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import type { CrmHealthResponse } from "@crm/shared";
 
 const health: CrmHealthResponse = {
@@ -6,7 +7,7 @@ const health: CrmHealthResponse = {
   timestamp: new Date().toISOString()
 };
 
-export default function HomePage(): JSX.Element {
+export default function HomePage(): ReactElement {
   return (
     <main>
       <section>
