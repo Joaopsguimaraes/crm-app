@@ -16,14 +16,22 @@ Object.defineProperty(window, "matchMedia", {
     media: query,
     onchange: null,
     removeEventListener: vi.fn(),
-    removeListener: vi.fn()
-  }))
+    removeListener: vi.fn(),
+  })),
 });
 
 class ResizeObserverMock {
-  disconnect(): void {}
-  observe(): void {}
-  unobserve(): void {}
+  disconnect(): void {
+    return undefined;
+  }
+
+  observe(): void {
+    return undefined;
+  }
+
+  unobserve(): void {
+    return undefined;
+  }
 }
 
 vi.stubGlobal("ResizeObserver", ResizeObserverMock);
@@ -37,7 +45,7 @@ vi.mock("next/navigation", () => ({
     prefetch: vi.fn(),
     push: vi.fn(),
     refresh: vi.fn(),
-    replace: vi.fn()
+    replace: vi.fn(),
   }),
-  useSearchParams: () => new URLSearchParams()
+  useSearchParams: () => new URLSearchParams(),
 }));
