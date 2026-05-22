@@ -1,0 +1,108 @@
+@baseUrl = http://localhost:3001
+
+### Health
+GET {{baseUrl}}/
+
+### Swagger JSON
+GET {{baseUrl}}/api/docs-json
+
+### Create customer
+# @name createCustomer
+POST {{baseUrl}}/customers
+Content-Type: application/json
+
+{
+  "name": "ACME Ltda",
+  "email": "financeiro@acme.com",
+  "phone": "+55 11 99999-0000",
+  "notes": "Prefers email contact."
+}
+
+### List customers
+GET {{baseUrl}}/customers?status=active,blocked&page=1&pageSize=20&sort=name
+
+### Get customer
+GET {{baseUrl}}/customers/{{createCustomer.response.body.$.id}}
+
+### Update customer
+PATCH {{baseUrl}}/customers/{{createCustomer.response.body.$.id}}
+Content-Type: application/json
+
+{
+  "phone": "+55 11 98888-0000",
+  "notes": "Updated from REST Client."
+}
+
+### Update customer status
+PATCH {{baseUrl}}/customers/{{createCustomer.response.body.$.id}}/status
+Content-Type: application/json
+
+{
+  "status": "blocked"
+}
+
+### Archive customer
+POST {{baseUrl}}/customers/{{createCustomer.response.body.$.id}}/archive
+
+### Unarchive customer
+POST {{baseUrl}}/customers/{{createCustomer.response.body.$.id}}/unarchive
+
+### Create customer contact
+# @name createContact
+POST {{baseUrl}}/customers/{{createCustomer.response.body.$.id}}/contacts
+Content-Type: application/json
+
+{
+  "name": "Joao Silva",
+  "role": "financial",
+  "email": "joao@acme.com",
+  "phone": "+55 11 97777-0000",
+  "notes": "Finance decision maker."
+}
+
+### List customer contacts
+GET {{baseUrl}}/customers/{{createCustomer.response.body.$.id}}/contacts
+
+### Update customer contact
+PATCH {{baseUrl}}/customers/{{createCustomer.response.body.$.id}}/contacts/{{createContact.response.body.$.id}}
+Content-Type: application/json
+
+{
+  "role": "commercial",
+  "notes": "Main commercial contact."
+}
+
+### Remove customer contact
+DELETE {{baseUrl}}/customers/{{createCustomer.response.body.$.id}}/contacts/{{createContact.response.body.$.id}}
+
+### Create customer address
+# @name createAddress
+POST {{baseUrl}}/customers/{{createCustomer.response.body.$.id}}/addresses
+Content-Type: application/json
+
+{
+  "type": "billing",
+  "isDefault": true,
+  "line1": "Av. Paulista, 1000",
+  "line2": "12th floor",
+  "city": "Sao Paulo",
+  "state": "SP",
+  "postalCode": "01310-100",
+  "country": "Brazil"
+}
+
+### List customer addresses
+GET {{baseUrl}}/customers/{{createCustomer.response.body.$.id}}/addresses
+
+### Update customer address
+PATCH {{baseUrl}}/customers/{{createCustomer.response.body.$.id}}/addresses/{{createAddress.response.body.$.id}}
+Content-Type: application/json
+
+{
+  "type": "shipping",
+  "city": "Campinas",
+  "isDefault": true
+}
+
+### Remove customer address
+DELETE {{baseUrl}}/customers/{{createCustomer.response.body.$.id}}/addresses/{{createAddress.response.body.$.id}}

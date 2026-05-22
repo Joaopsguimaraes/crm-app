@@ -150,6 +150,21 @@ pnpm format:check
 pnpm build
 ```
 
+## API Documentation
+
+Swagger documentation for the NestJS API is generated from controller and DTO decorators.
+
+```bash
+pnpm install
+pnpm --filter @crm/api dev
+```
+
+Open the Swagger UI at `http://localhost:3001/api/docs`.
+
+The generated OpenAPI JSON is available at `http://localhost:3001/api/docs-json`.
+
+Update the related controller, DTO, and response decorators when endpoint contracts change.
+
 ### Test Commands
 
 ```bash

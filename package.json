@@ -8,6 +8,11 @@
     "apps/*",
     "packages/*"
   ],
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "@scarf/scarf"
+    ]
+  },
   "scripts": {
     "build": "pnpm -r build",
     "clean": "pnpm -r clean",
