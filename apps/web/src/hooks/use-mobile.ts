@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import * as React from "react"
 
 const MOBILE_BREAKPOINT = 768

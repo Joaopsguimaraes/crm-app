@@ -4,4 +4,9 @@ import { createBaseConfig } from "@crm/eslint-config/base";
 
 const tsconfigRootDir = dirname(fileURLToPath(import.meta.url));
 
-export default createBaseConfig({ tsconfigRootDir });
+export default [
+  {
+    ignores: ["*.config.mjs"],
+  },
+  ...createBaseConfig({ tsconfigRootDir }),
+];
