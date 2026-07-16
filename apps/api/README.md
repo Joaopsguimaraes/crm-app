@@ -7,7 +7,6 @@ API integration tests.
 The first implemented business module is `Customers`, based on:
 
 - `docs/customer/domain.md` for business language and rules.
-- `docs/customer/api-technical-design.md` for the implemented API design.
 
 ## Package Shape
 
@@ -42,7 +41,7 @@ Use `apps/api/.env.example` as the local template.
 PORT=3001
 
 POSTGRES_HOST=localhost
-POSTGRES_PORT=5432
+POSTGRES_PORT=55432
 POSTGRES_USER=crm
 POSTGRES_PASSWORD=crm
 POSTGRES_DB=crm
@@ -165,4 +164,3 @@ Testing conventions:
 - Do not put frontend state, UI flow, or screen decisions in this package.
 - Do not add operational Customer hard delete routes.
 - Avoid logging raw Customer request bodies because records can contain PII.
-

@@ -11,10 +11,9 @@ metadata, and API tests.
 Before changing Customer behavior, read:
 
 - `../../docs/customer/domain.md`
-- `../../docs/customer/api-technical-design.md`
 
-The domain doc is the source of truth for business language. The technical
-design records the implemented API decisions.
+The domain doc is the source of truth for business language, rules, and
+decisions.
 
 ## Commands
 
@@ -93,4 +92,3 @@ Customer, contact, and address records can contain PII and commercial context.
 - Fiscal profile and invoice-specific validation.
 - Automatic duplicate merge.
 - Shared business DTOs in `packages/shared` unless there is a concrete cross-package consumer.
-
