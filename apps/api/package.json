@@ -5,10 +5,11 @@
   "scripts": {
     "build": "nest build",
     "clean": "rm -rf dist",
+    "deploy": "pnpm build && pnpm migration:run",
     "dev": "nest start --watch",
     "lint": "eslint .",
-    "migration:revert": "typeorm -d dist/data-source.js migration:revert",
-    "migration:run": "typeorm -d dist/data-source.js migration:run",
+    "migration:revert": "typeorm -d dist/src/data-source.js migration:revert",
+    "migration:run": "typeorm -d dist/src/data-source.js migration:run",
     "start": "node dist/main.js",
     "test": "jest",
     "test:integration": "jest --testMatch '**/*.integration-spec.ts'",

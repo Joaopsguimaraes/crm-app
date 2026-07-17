@@ -139,10 +139,81 @@ Each new feature should include at least:
 - E2E tests for critical user workflows.
 - Regression tests for every bug fix.
 
+## Local Setup
+
+### 1. Install dependencies
+
+```bash
+pnpm install
+```
+
+### 2. Configure environment files
+
+Create `apps/api/.env` from `apps/api/.env.example`.
+
+```env
+PORT=3001
+
+POSTGRES_HOST=localhost
+POSTGRES_PORT=55432
+POSTGRES_USER=crm
+POSTGRES_PASSWORD=crm
+POSTGRES_DB=crm
+DATABASE_SSL=false
+```
+
+Create `apps/web/.env`.
+
+```env
+CRM_API_URL=http://localhost:3001
+CUSTOMER_UI_ENABLED=true
+```
+
+If the API runs on another port, update both `apps/api/.env` and
+`apps/web/.env`. For example, if `PORT=8000`, set
+`CRM_API_URL=http://localhost:8000`.
+
+### 3. Start Postgres
+
+```bash
+pnpm db:up
+```
+
+The local Docker database is exposed on `localhost:55432`.
+
+### 4. Prepare the database
+
+Run deploy before starting the app in a fresh environment. The deploy command
+currently builds the API and runs TypeORM migrations. Future seed steps should
+be added to this command so new developers and deployments keep one setup
+entrypoint.
+
+```bash
+pnpm deploy
+```
+
+### 5. Start the applications
+
+```bash
+pnpm dev
+```
+
+By default:
+
+- Web: `http://localhost:3000`
+- API: `http://localhost:3001`
+- Swagger UI: `http://localhost:3001/api/docs`
+
+The root web route redirects to `/customers`. The Customer UI is hidden behind
+`CUSTOMER_UI_ENABLED=true`, and the web app loads Customer data from
+`CRM_API_URL`.
+
 ## Commands
 
 ```bash
 pnpm install
+pnpm db:up
+pnpm deploy
 pnpm dev
 pnpm lint
 pnpm typecheck
@@ -150,12 +221,34 @@ pnpm format:check
 pnpm build
 ```
 
+Useful database commands:
+
+```bash
+pnpm db:logs
+pnpm db:down
+```
+
+API-only commands:
+
+```bash
+pnpm --filter @crm/api build
+pnpm --filter @crm/api deploy
+pnpm --filter @crm/api migration:run
+pnpm --filter @crm/api migration:revert
+pnpm --filter @crm/api dev
+```
+
+Web-only commands:
+
+```bash
+pnpm --filter @crm/web dev
+```
+
 ## API Documentation
 
 Swagger documentation for the NestJS API is generated from controller and DTO decorators.
 
 ```bash
-pnpm install
 pnpm --filter @crm/api dev
 ```
 

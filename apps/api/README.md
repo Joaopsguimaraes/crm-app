@@ -62,12 +62,20 @@ This package uses TypeORM with Postgres. Runtime schema synchronization is
 disabled; schema changes must go through migrations.
 
 Build before running migration commands because TypeORM reads the compiled
-`dist/data-source.js` file.
+`dist/src/data-source.js` file.
 
 ```bash
 pnpm --filter @crm/api build
 pnpm --filter @crm/api migration:run
 pnpm --filter @crm/api migration:revert
+```
+
+For local deploy/setup, prefer the package deploy command. It currently builds
+the API and runs migrations. Future seed commands should be appended there so
+new environments can be prepared with one command.
+
+```bash
+pnpm --filter @crm/api deploy
 ```
 
 ## API Documentation
